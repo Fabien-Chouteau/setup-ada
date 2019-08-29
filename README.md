@@ -1,9 +1,31 @@
-# JavaScript Action Template
+# setup-ada
 
-This template offers an easy way to get started writing a JavaScript action with TypeScript compile time support, unit testing with Jest and using the GitHub Actions Toolkit.
+This action sets up a Ada/SPARK environment for use in GitHub actions.
 
-## Getting Started
+# Usage
 
-See the walkthrough located [here](https://github.com/actions/toolkit/blob/master/docs/javascript-action.md).
+See [action.yml](action.yml)
 
-In addition to walking your through how to create an action, it also provides strategies for versioning, releasing and referencing your actions.
+Basic:
+```yaml
+steps:
+- uses: actions/checkout@master
+- uses: Fabien-Chouteau/setup-ada@dev
+  with:
+    distrib: fsf
+    target: native
+- run: gprbuild hello
+- uses: Fabien-Chouteau/setup-ada@dev
+  with:
+    distrib: community
+    target: arm-elf
+- run: gprbuild --target=arm-eabi --RTS=zfp-microbit hello
+```
+
+# License
+
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
+
+# Contributions
+
+Contributions are welcome!  See [Contributor's Guide](docs/contributors.md)
